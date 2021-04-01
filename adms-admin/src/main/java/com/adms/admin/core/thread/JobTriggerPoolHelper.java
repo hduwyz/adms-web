@@ -27,7 +27,7 @@ public class JobTriggerPoolHelper {
     public void start() {
         fastTriggerPool = new ThreadPoolExecutor(
                 10,
-                JobAdminConfig.getAdminConfig().getTriggerPoolFastMax(),
+                20,
                 60L,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(1000),
@@ -40,7 +40,7 @@ public class JobTriggerPoolHelper {
 
         slowTriggerPool = new ThreadPoolExecutor(
                 10,
-                JobAdminConfig.getAdminConfig().getTriggerPoolSlowMax(),
+                20,
                 60L,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(2000),

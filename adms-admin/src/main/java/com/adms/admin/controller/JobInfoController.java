@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/job")
 public class JobInfoController extends BaseController{
 
-    @Resource
+//    @Resource
     private JobService jobService;
 
     @PostMapping("/add")

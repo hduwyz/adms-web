@@ -84,7 +84,7 @@ public class JobScheduler {
         referenceBean.setVersion(null);
         referenceBean.setTimeout(3000);
         referenceBean.setAddress(address);
-        referenceBean.setAccessToken(JobAdminConfig.getAdminConfig().getAccessToken());
+        referenceBean.setAccessToken(null);
         referenceBean.setInvokeCallback(null);
         referenceBean.setInvokerFactory(null);
 
