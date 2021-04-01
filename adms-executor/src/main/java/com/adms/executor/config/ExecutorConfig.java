@@ -35,12 +35,6 @@ public class ExecutorConfig {
     @Value("${adms.job.accessToken}")
     private String accessToken;
 
-    @Value("${adms.job.executor.logpath}")
-    private String logPath;
-
-    @Value("${adms.job.executor.logretentiondays}")
-    private int logRetentionDays;
-
     @Bean
     public JobSpringExecutor JobExecutor() {
         logger.info(">>>>>>>>>>> datax-web config init.");
@@ -51,11 +45,8 @@ public class ExecutorConfig {
         jobSpringExecutor.setPort(port);
         jobSpringExecutor.setAccessToken(accessToken);
         String dataXHomePath = SystemUtils.getDataXHomePath();
-        if (StringUtils.isEmpty(logPath)) {
-            logPath = dataXHomePath + DEFAULT_LOG_PATH;
-        }
-        jobSpringExecutor.setLogPath(logPath);
-        jobSpringExecutor.setLogRetentionDays(logRetentionDays);
+        jobSpringExecutor.setLogPath(dataXHomePath + DEFAULT_LOG_PATH);
+        jobSpringExecutor.setLogRetentionDays(20);
 
         return jobSpringExecutor;
     }
