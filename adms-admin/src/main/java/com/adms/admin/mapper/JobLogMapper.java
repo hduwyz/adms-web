@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface JobLogMapper extends BaseMapper<JobLog> {
 
+    long save(JobLog jobLog);
+
+    int updateTriggerInfo(JobLog jobLog);
+
 }

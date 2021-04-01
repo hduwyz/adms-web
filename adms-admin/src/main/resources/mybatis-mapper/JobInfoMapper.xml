@@ -25,4 +25,10 @@
         id, job_executor_id, job_desc, project_id, add_time, update_time, user_id, executor_route_strategy, executor_handler, executor_param, executor_block_strategy, executor_timeout, executor_fail_retry_count, datasource_id
     </sql>
 
+    <select id="loadById" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM job_info AS t
+        WHERE t.id = #{id}
+    </select>
+
 </mapper>

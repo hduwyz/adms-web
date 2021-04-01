@@ -1,9 +1,16 @@
 package com.adms.admin.core.conf;
 
 import com.adms.admin.core.scheduler.JobScheduler;
+import com.adms.admin.mapper.JobExecutorMapper;
+import com.adms.admin.mapper.JobInfoMapper;
+import com.adms.admin.mapper.JobLogMapper;
+import lombok.Data;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 /**
  * xxl-job config
@@ -12,6 +19,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Data
 public class JobAdminConfig implements InitializingBean, DisposableBean {
 
     private static JobAdminConfig adminConfig = null;
@@ -37,5 +45,14 @@ public class JobAdminConfig implements InitializingBean, DisposableBean {
     public void destroy() throws Exception {
         xxlJobScheduler.destroy();
     }
+
+    @Resource
+    private JobLogMapper jobLogMapper;
+    @Resource
+    private JobInfoMapper jobInfoMapper;
+    @Resource
+    private DataSource dataSource;
+    @Resource
+    private JobExecutorMapper jobExecutorMapper;
 
 }

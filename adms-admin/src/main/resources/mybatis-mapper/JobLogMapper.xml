@@ -29,4 +29,37 @@
         id, job_group, job_id, job_desc, executor_address, executor_handler, executor_param, executor_sharding_param, executor_fail_retry_count, trigger_time, trigger_code, trigger_msg, handle_time, handle_code, handle_msg, alarm_status, process_id, max_id
     </sql>
 
+    <insert id="save" parameterType="com.adms.admin.entity.JobLog" useGeneratedKeys="true" keyProperty="id" >
+        INSERT INTO job_log (
+        `job_group`,
+        `job_id`,
+        `job_desc`,
+        `trigger_time`,
+        `trigger_code`,
+        `handle_code`
+        ) VALUES (
+        #{jobGroup},
+        #{jobId},
+        #{jobDesc},
+        #{triggerTime},
+        #{triggerCode},
+        #{handleCode}
+        );
+    </insert>
+
+    <update id="updateTriggerInfo" >
+        UPDATE job_log
+        SET
+            `trigger_time`= #{triggerTime},
+            `trigger_code`= #{triggerCode},
+            `trigger_msg`= #{triggerMsg},
+            `executor_address`= #{executorAddress},
+            `executor_handler`=#{executorHandler},
+            `executor_param`= #{executorParam},
+            `executor_sharding_param`= #{executorShardingParam},
+            `executor_fail_retry_count`= #{executorFailRetryCount},
+            `max_id` = #{maxId}
+        WHERE `id`= #{id}
+    </update>
+
 </mapper>

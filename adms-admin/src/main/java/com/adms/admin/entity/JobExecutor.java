@@ -3,6 +3,10 @@ package com.adms.admin.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -50,5 +54,13 @@ public class JobExecutor implements Serializable {
      */
     private String addressList;
 
+    // registry list
+    private List<String> registryList;  // 执行器地址列表(系统注册)
 
+    public List<String> getRegistryList() {
+        if (addressList!=null && addressList.trim().length()>0) {
+            registryList = new ArrayList<>(Arrays.asList(addressList.split(",")));
+        }
+        return registryList;
+    }
 }
