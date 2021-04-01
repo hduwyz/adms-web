@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adms.admin.mapper.ExecutorResourceInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.adms.admin.entity.ExecutorResourceInfo">
+        <id column="id" property="id" />
+        <result column="registry_group" property="registryGroup" />
+        <result column="registry_key" property="registryKey" />
+        <result column="registry_value" property="registryValue" />
+        <result column="cpu_usage" property="cpuUsage" />
+        <result column="memory_usage" property="memoryUsage" />
+        <result column="load_average" property="loadAverage" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, registry_group, registry_key, registry_value, cpu_usage, memory_usage, load_average, update_time
+    </sql>
+
+</mapper>

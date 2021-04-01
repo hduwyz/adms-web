@@ -2,7 +2,6 @@ package com.adms.executor.config;
 
 import com.adms.core.executor.impl.JobSpringExecutor;
 import com.adms.executor.util.SystemUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adms.admin.mapper.JobJdbcDatasourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.adms.admin.entity.JobJdbcDatasource">
+        <id column="id" property="id" />
+        <result column="datasource_name" property="datasourceName" />
+        <result column="datasource" property="datasource" />
+        <result column="datasource_group" property="datasourceGroup" />
+        <result column="database_name" property="databaseName" />
+        <result column="jdbc_username" property="jdbcUsername" />
+        <result column="jdbc_password" property="jdbcPassword" />
+        <result column="jdbc_url" property="jdbcUrl" />
+        <result column="jdbc_driver_class" property="jdbcDriverClass" />
+        <result column="zk_adress" property="zkAdress" />
+        <result column="status" property="status" />
+        <result column="create_by" property="createBy" />
+        <result column="create_date" property="createDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="comments" property="comments" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, datasource_name, datasource, datasource_group, database_name, jdbc_username, jdbc_password, jdbc_url, jdbc_driver_class, zk_adress, status, create_by, create_date, update_by, update_date, comments
+    </sql>
+
+</mapper>

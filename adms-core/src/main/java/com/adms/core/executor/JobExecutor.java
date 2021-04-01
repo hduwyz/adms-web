@@ -7,12 +7,15 @@ import com.adms.core.biz.impl.ExecutorBizImpl;
 import com.adms.core.handler.IJobHandler;
 import com.adms.core.thread.ExecutorRegistryThread;
 import com.adms.core.thread.JobThread;
+import com.adms.core.thread.ProcessCallbackThread;
+import com.adms.core.thread.TriggerCallbackThread;
 import com.xxl.rpc.core.registry.Register;
 import com.xxl.rpc.core.remoting.net.impl.netty_http.server.NettyHttpServer;
 import com.xxl.rpc.core.remoting.provider.XxlRpcProviderFactory;
 import com.xxl.rpc.core.serialize.Serializer;
 import com.xxl.rpc.core.serialize.impl.HessianSerializer;
 import com.xxl.rpc.core.util.IpUtil;
+import com.xxl.rpc.core.util.NetUtil;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,18 +46,43 @@ public class JobExecutor {
     public void start() throws Exception {
         // init logpath
         //init invoker, admin-client
+        initAdminBizList(adminAddresses, accessToken);
         // init JobLogFileCleanThread
         // init TriggerCallbackThread
-        // init TriggerCallbackThread
+        TriggerCallbackThread.getInstance().start();
+        // init ProcessCallbackThread
+        ProcessCallbackThread.getInstance().start();
         // init executor-server
+        port = port > 0 ? port : NetUtil.findAvailablePort(9999);
+        ip = (ip != null && ip.trim().length() > 0) ? ip : IpUtil.getIp();
+        initRpcProvider(ip, port, appName, accessToken);
     }
 
     public void destroy() {
         // destory executor-server
+        stopRpcProvider();
         // destory jobThreadRepository
+        if (jobThreadRepository.size() > 0) {
+            for (Map.Entry<Integer, JobThread> item : jobThreadRepository.entrySet()) {
+                removeJobThread(item.getKey(), "web container destroy and kill the job.");
+                JobThread oldJobThread = removeJobThread(item.getKey(), "web container destroy and kill the job.");
+                // wait for job thread push result to callback queue
+                if (oldJobThread != null) {
+                    try {
+                        oldJobThread.join();
+                    } catch (InterruptedException e) {
+                        logger.error(">>>>>>>>>>> datax-web, JobThread destroy(join) error, jobId:{}", item.getKey(), e);
+                    }
+                }
+            }
+            jobThreadRepository.clear();
+        }
+        jobHandlerRepository.clear();
         // destory JobLogFileCleanThread
         // destory TriggerCallbackThread
+        TriggerCallbackThread.getInstance().toStop();
         // destory ProcessCallbackThread
+        ProcessCallbackThread.getInstance().toStop();
     }
 
     // ---------------------- admin-client (rpc invoker) ----------------------

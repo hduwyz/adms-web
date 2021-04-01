@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adms.admin.mapper.JobInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.adms.admin.entity.JobInfo">
+        <id column="id" property="id" />
+        <result column="job_executor_id" property="jobExecutorId" />
+        <result column="job_desc" property="jobDesc" />
+        <result column="project_id" property="projectId" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="executor_route_strategy" property="executorRouteStrategy" />
+        <result column="executor_handler" property="executorHandler" />
+        <result column="executor_param" property="executorParam" />
+        <result column="executor_block_strategy" property="executorBlockStrategy" />
+        <result column="executor_timeout" property="executorTimeout" />
+        <result column="executor_fail_retry_count" property="executorFailRetryCount" />
+        <result column="datasource_id" property="datasourceId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, job_executor_id, job_desc, project_id, add_time, update_time, user_id, executor_route_strategy, executor_handler, executor_param, executor_block_strategy, executor_timeout, executor_fail_retry_count, datasource_id
+    </sql>
+
+</mapper>

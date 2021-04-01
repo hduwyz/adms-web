@@ -1,91 +1,86 @@
 package com.adms.admin.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import lombok.Data;
-
+import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
- * xxl-job info
+ * <p>
+ * 
+ * </p>
  *
- * @author jingwk  2019-11-17 14:25:49
+ * @author wangyz
+ * @since 2021-04-01
  */
 @Data
-public class JobInfo {
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class JobInfo implements Serializable {
 
-	private int id;
+    private static final long serialVersionUID=1L;
 
-	private int jobGroup;
+      @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-	private String jobCron;
+    /**
+     * 执行器主键ID
+     */
+    private Integer jobExecutorId;
 
-	private String jobDesc;
+    private String jobDesc;
 
-	private Date addTime;
+    /**
+     * 所属项目id
+     */
+    private Integer projectId;
 
-	private Date updateTime;
+    private Date addTime;
 
-	private int userId;
+    private Date updateTime;
 
-	private String alarmEmail;
+    /**
+     * 修改用户
+     */
+    private Integer userId;
 
-	private String executorRouteStrategy;
+    /**
+     * 执行器路由策略
+     */
+    private String executorRouteStrategy;
 
-	private String executorHandler;
+    /**
+     * 执行器任务handler
+     */
+    private String executorHandler;
 
-	private String executorParam;
+    /**
+     * 执行器任务参数
+     */
+    private String executorParam;
 
-	private String executorBlockStrategy;
+    /**
+     * 阻塞处理策略
+     */
+    private String executorBlockStrategy;
 
-	private int executorTimeout;
+    /**
+     * 任务执行超时时间，单位分钟
+     */
+    private Integer executorTimeout;
 
-	private int executorFailRetryCount;
+    /**
+     * 失败重试次数
+     */
+    private Integer executorFailRetryCount;
 
-	private String glueType;
+    /**
+     * 数据源id
+     */
+    private Long datasourceId;
 
-	private String glueSource;
 
-	private String glueRemark;
-
-	private Date glueUpdatetime;
-
-	private String childJobId;
-
-	private int triggerStatus;
-
-	private long triggerLastTime;
-
-	private long triggerNextTime;
-
-	private String jobJson;
-
-	private String replaceParam;
-
-	private String replaceParamType;
-
-	private String jvmParam;
-
-	private Date incStartTime;
-
-	private String partitionInfo;
-
-	private int lastHandleCode;
-
-	private int projectId;
-
-	private String primaryKey;
-
-	private Long incStartId;
-
-	private int incrementType;
-
-	private  String readerTable;
-
-	private int datasourceId;
-
-	@TableField(exist=false)
-	private String projectName;
-
-	@TableField(exist=false)
-	private String userName;
 }
