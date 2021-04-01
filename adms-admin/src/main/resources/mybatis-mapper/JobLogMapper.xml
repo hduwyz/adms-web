@@ -29,6 +29,12 @@
         id, job_group, job_id, job_desc, executor_address, executor_handler, executor_param, executor_sharding_param, executor_fail_retry_count, trigger_time, trigger_code, trigger_msg, handle_time, handle_code, handle_msg, alarm_status, process_id, max_id
     </sql>
 
+    <select id="load" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM job_log AS t
+        WHERE t.id = #{id}
+    </select>
+
     <insert id="save" parameterType="com.adms.admin.entity.JobLog" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO job_log (
         `job_group`,
