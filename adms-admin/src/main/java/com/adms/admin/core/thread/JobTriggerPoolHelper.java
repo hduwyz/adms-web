@@ -1,6 +1,5 @@
 package com.adms.admin.core.thread;
 
-import com.adms.admin.core.conf.JobAdminConfig;
 import com.adms.admin.core.trigger.JobTrigger;
 import com.adms.admin.core.trigger.TriggerTypeEnum;
 import org.slf4j.Logger;

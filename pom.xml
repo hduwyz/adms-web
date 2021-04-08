@@ -27,6 +27,8 @@
         <mysql-connector.version>8.0.18</mysql-connector.version>
         <mybatisplus.version>3.3.1</mybatisplus.version>
         <spring.version>5.3.5</spring.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <fastjson.version>1.2.70</fastjson.version>
     </properties>
 
     <dependencies>

@@ -16,4 +16,11 @@
         id, username, password, role, permission
     </sql>
 
+    <select id="loadByUserName" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM job_user AS t
+        WHERE t.username = #{username}
+    </select>
+
 </mapper>
