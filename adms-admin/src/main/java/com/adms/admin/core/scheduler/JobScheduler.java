@@ -1,6 +1,7 @@
 package com.adms.admin.core.scheduler;
 
 import com.adms.admin.core.conf.JobAdminConfig;
+import com.adms.admin.core.thread.JobTriggerPoolHelper;
 import com.adms.core.biz.ExecutorBiz;
 import com.xxl.rpc.core.remoting.invoker.call.CallType;
 import com.xxl.rpc.core.remoting.invoker.reference.XxlRpcReferenceBean;
@@ -26,8 +27,8 @@ public class JobScheduler {
 //        // admin monitor run
 //        JobFailMonitorHelper.getInstance().start();
 //
-//        // admin trigger pool start
-//        JobTriggerPoolHelper.toStart();
+        // admin trigger pool start
+        JobTriggerPoolHelper.toStart();
 //
 //        // admin log report start
 //        JobLogReportHelper.getInstance().start();
@@ -47,8 +48,8 @@ public class JobScheduler {
 //        // admin log report stop
 //        JobLogReportHelper.getInstance().toStop();
 //
-//        // admin trigger pool stop
-//        JobTriggerPoolHelper.toStop();
+        // admin trigger pool stop
+        JobTriggerPoolHelper.toStop();
 //
 //        // admin monitor stop
 //        JobFailMonitorHelper.getInstance().toStop();
@@ -69,10 +70,10 @@ public class JobScheduler {
 
         // load-cache
         address = address.trim();
-        ExecutorBiz executorBiz = executorBizRepository.get(address);
-        if (executorBiz != null) {
-            return executorBiz;
-        }
+//        ExecutorBiz executorBiz = executorBizRepository.get(address);
+//        if (executorBiz != null) {
+//            return executorBiz;
+//        }
 
         // set-cache
         XxlRpcReferenceBean referenceBean = new XxlRpcReferenceBean();
@@ -88,7 +89,7 @@ public class JobScheduler {
         referenceBean.setInvokeCallback(null);
         referenceBean.setInvokerFactory(null);
 
-        executorBiz = (ExecutorBiz) referenceBean.getObject();
+        ExecutorBiz executorBiz = (ExecutorBiz) referenceBean.getObject();
 
         executorBizRepository.put(address, executorBiz);
         return executorBiz;

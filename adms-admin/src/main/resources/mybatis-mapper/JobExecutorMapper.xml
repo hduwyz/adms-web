@@ -14,7 +14,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, app_name, title, order, address_type, address_list
+        id, app_name, title, `order`, address_type, address_list
     </sql>
 
     <select id="load" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -48,7 +48,7 @@ public class AdminBizImpl implements AdminBiz {
 
     @Override
     public ReturnT<String> registry(RegistryParam registryParam) {
-        return null;
+        return ReturnT.SUCCESS;
     }
 
     @Override
