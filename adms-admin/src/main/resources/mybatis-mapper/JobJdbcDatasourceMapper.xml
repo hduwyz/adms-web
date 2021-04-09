@@ -27,4 +27,20 @@
         id, datasource_name, datasource, datasource_group, database_name, jdbc_username, jdbc_password, jdbc_url, jdbc_driver_class, zk_adress, status, create_by, create_date, update_by, update_date, comments
     </sql>
 
+    <update id="update" parameterType="com.adms.admin.entity.JobJdbcDatasource">
+        UPDATE job_jdbc_datasource
+        <set>
+            <if test="datasourceName!=null">datasource_name = #{datasourceName},</if>
+            <if test="datasource!=null">datasource = #{datasource},</if>
+            <if test="datasourceGroup!=null">datasource_group = #{datasourceGroup},</if>
+            <if test="jdbcUsername!=null">jdbc_username = #{jdbcUsername},</if>
+            <if test="jdbcPassword!=null">jdbc_password = #{jdbcPassword},</if>
+            <if test="jdbcUrl!=null">jdbc_url = #{jdbcUrl},</if>
+            <if test="jdbcDriverClass!=null">jdbc_driver_class = #{jdbcDriverClass},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="comments!=null">comments = #{comments},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
 </mapper>

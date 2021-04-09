@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2021-04-01
  */
 public interface JobJdbcDatasourceMapper extends BaseMapper<JobJdbcDatasource> {
-
+    int update(JobJdbcDatasource datasource);
 }
